@@ -1,6 +1,7 @@
 package memorize;
 
 import java.util.Dictionary;
+import java.util.Optional;
 
 public class Translator {
 
@@ -10,7 +11,7 @@ public class Translator {
         this.dictionary = dictionary;
     }
 
-    public String translate(String word) {
-        return dictionary.get(word);
+    public Optional<String> translate(String word) {
+        return Optional.ofNullable(dictionary.get(word));
     }
 }
