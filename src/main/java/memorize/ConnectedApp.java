@@ -19,28 +19,23 @@ public class ConnectedApp {
     }
 
     private void run() {
-        String question = getQuestion();
-        String correctAnswer = getResolution(question);
-        displayQuestion(question);
+        Quitz quitz = getQuitz();
+        displayQuestion(quitz.getQuestion());
         String answer = getUserAnswer();
 
-        if (answer.equalsIgnoreCase(correctAnswer)) {
+        if (quitz.isCorrect(answer)) {
             displaySuccess();
         } else {
-            displayFailure(correctAnswer);
+            displayFailure();
         }
     }
 
-    private String getQuestion() {
-        return "Risposta corretta?";
+    private Quitz getQuitz() {
+        return new Quitz("Risposta corretta?", "corretta");
     }
 
     private void displayQuestion(String question) {
         System.out.println(question);
-    }
-
-    private String getResolution(String question) {
-        return "corretta";
     }
 
     private String getUserAnswer() {
@@ -49,8 +44,8 @@ public class ConnectedApp {
         return scanner.nextLine();
     }
 
-    private void displayFailure(String correctAnswer) {
-        System.out.println("ERRORE: la risposta corretta è '" + correctAnswer + "'");
+    private void displayFailure() {
+        System.out.println("ERRORE");
     }
 
     private void displaySuccess() {
