@@ -11,28 +11,35 @@ import java.io.PrintStream;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class MemorizedAppTest {
+class MemorizedAppTest {
 
     private App app;
 
     private final ByteArrayOutputStream stdout = new ByteArrayOutputStream();
 
     @AfterEach
-    public void after() {
+    void after() {
         System.setOut(System.out);
     }
 
     @BeforeEach
-    public void before() {
+    void before() {
         System.setOut(new PrintStream(stdout));
         app = new App();
     }
 
     @Test
-    public void it_asks_for_a_question() {
+    void it_answers_correctly() {
         writeOnSystemIn("corretta");
         app.run();
         assertThat(stdout.toString()).isEqualTo("Domanda?\n> OK\n");
+    }
+
+    @Test
+    void it_answers_wrongly() {
+        writeOnSystemIn("errata");
+        app.run();
+        assertThat(stdout.toString()).isEqualTo("Domanda?\n> ERRORE\n");
     }
 
     private void writeOnSystemIn(String input) {
