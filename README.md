@@ -59,5 +59,12 @@ possible questions but expecting a specific output and giving a
 specific input. This test is screaming for a refactoring of the code 
 that will end up in a refactoring/ease of the test itself.
 
+## The first real refactoring
+Now that I have a test the application may be refactored for real. 
+The first question I make to myself is: should I use a functional style
+or an object oriented style? In the first case I should pass some 
+functions to accomplish to the different task of selecting an 
+puzzle to present and check for the answers.
+
     
  

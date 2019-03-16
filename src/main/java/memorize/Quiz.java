@@ -1,10 +1,10 @@
 package memorize;
 
-public class Quitz {
+class Quiz {
     private final String question;
     private final String answer;
 
-    Quitz(String question, String answer) {
+    Quiz(String question, String answer) {
         this.question = question;
         this.answer = answer;
     }

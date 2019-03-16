@@ -1,34 +1,42 @@
 package memorize;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
 
 public class App {
 
+    private final ArrayList<Quiz> quizzes;
+
     public static void main(String[] args) {
         try {
-            new App().run();
+            var quizzes = new ArrayList<Quiz>();
+            quizzes.add(new Quiz("Domanda?", "corretta"));
+
+            new App(quizzes).run();
         } catch (Exception e) {
             System.err.println(e.getMessage());
             exit(1);
         }
     }
 
-    void run() {
-        Quitz quitz = getQuitz();
-        displayQuestion(quitz.getQuestion());
-        String answer = getUserAnswer();
-
-        if (quitz.isCorrect(answer)) {
-            displaySuccess();
-        } else {
-            displayFailure();
-        }
+    App(ArrayList<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 
-    private Quitz getQuitz() {
-        return new Quitz("Domanda?", "corretta");
+    void run() {
+        for (Quiz quiz : quizzes) {
+            displayQuestion(quiz.getQuestion());
+            String answer = getUserAnswer();
+
+            if (quiz.isCorrect(answer)) {
+                displaySuccess();
+            } else {
+                displayFailure();
+            }
+
+        }
     }
 
     private void displayQuestion(String question) {

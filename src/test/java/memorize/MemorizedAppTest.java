@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -25,7 +26,9 @@ class MemorizedAppTest {
     @BeforeEach
     void before() {
         System.setOut(new PrintStream(stdout));
-        app = new App();
+        ArrayList<Quiz> quizzes = new ArrayList<>();
+        quizzes.add(new Quiz("Domanda?", "corretta"));
+        app = new App(quizzes);
     }
 
     @Test
