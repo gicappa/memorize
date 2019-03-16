@@ -53,7 +53,11 @@ architecture.
 
 ## The first test
 The first end to end test is where the connected application start 
-showing its needs of refactoring.
-There are hardcoded values that must be passed by the test itself to be testest.  
+showing its needs of refactoring. The test is showing all the limit
+of having to read a standard input without passing in any way the 
+possible questions but expecting a specific output and giving a 
+specific input. This test is screaming for a refactoring of the code 
+that will end up in a refactoring/ease of the test itself.
+
     
  
