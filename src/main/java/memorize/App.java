@@ -1,42 +1,52 @@
 package memorize;
 
-import java.util.Hashtable;
-import java.util.Optional;
+import java.util.Scanner;
 
-public class App implements Runnable {
+import static java.lang.System.exit;
 
-    private final TermChooser tc;
-    private final Translator tr;
+public class App {
 
-    public static void main(String... args) {
-
-        var dict = new Hashtable<String, String>();
-        var tr = new DefaultTranslator(dict);
-
-        var tc = new TermChooser() {
-            @Override
-            public String chooseTerm() {
-                return null;
-            }
-        };
-
-        var app = new App(tc, tr);
-        app.run();
+    public static void main(String[] args) {
+        try {
+            new App().run();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            exit(1);
+        }
     }
 
-    private App(TermChooser tc, Translator tr) {
-        this.tc = tc;
-        this.tr = tr;
+    void run() {
+        Quitz quitz = getQuitz();
+        displayQuestion(quitz.getQuestion());
+        String answer = getUserAnswer();
+
+        if (quitz.isCorrect(answer)) {
+            displaySuccess();
+        } else {
+            displayFailure();
+        }
     }
 
-    @Override
-    public void run() {
-//        Optional.of(tc::chooseTerm)
-//                .flatMap(tr::translate).get();
+    private Quitz getQuitz() {
+        return new Quitz("Domanda?", "corretta");
     }
 
-    private String displayTerm(String term) {
-        System.out.println(term);
-        return term;
+    private void displayQuestion(String question) {
+        System.out.println(question);
     }
+
+    private String getUserAnswer() {
+        System.out.print("> ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    private void displayFailure() {
+        System.out.println("ERRORE");
+    }
+
+    private void displaySuccess() {
+        System.out.println("OK");
+    }
+
 }

@@ -28,7 +28,7 @@ So I decided to take this small, insignificant and unrequested
 experience on software project I had during almost twenty years of
 writing code.
 
-# Day One: first approach  
+# Day One: Connected skeleton to modularized approach  
 Let's start from writing a completely connected application (procedural 
 style) with a single class with a main that uses the console to interact
 with the user. At the beginning the application will be hard coded 
@@ -49,5 +49,11 @@ real life feed back.
 Since I'm a TDDer, not having a single test makes me uncomfortable, so 
 as soon as I have skeleton ready I'll try to cover it with an end to 
 end test and I'll start from that one to trigger the TDD of the whole 
-architecture.    
+architecture.
+
+## The first test
+The first end to end test is where the connected application start 
+showing its needs of refactoring.
+There are hardcoded values that must be passed by the test itself to be testest.  
+    
  
