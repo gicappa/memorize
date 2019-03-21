@@ -27,7 +27,7 @@ public class App {
 
     void run() {
         for (Quiz quiz : quizzes) {
-            displayQuestion(quiz.getQuestion());
+            displayQuestion(quiz.getDescription());
             String answer = getUserAnswer();
 
             if (quiz.isCorrect(answer)) {
