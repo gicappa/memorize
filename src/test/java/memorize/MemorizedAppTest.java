@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static memorize.Answer.CORRECT;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 class MemorizedAppTest {
@@ -43,6 +44,14 @@ class MemorizedAppTest {
         writeOnSystemIn("errata");
         app.run();
         assertThat(stdout.toString()).isEqualTo("Domanda?\n> ERRORE\n");
+    }
+
+    @Test
+    void it_return_result_ok_for_asking_correct_answer() {
+        writeOnSystemIn("corretta");
+        Answer answer = app.askQuiz(new Quiz("Domanda?", "corretta"));
+        assertThat(answer).isEqualTo(CORRECT);
+
     }
 
     private void writeOnSystemIn(String input) {

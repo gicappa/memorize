@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
+import static memorize.Answer.CORRECT;
 
 /**
  * Entry point for the whole application.
@@ -46,7 +47,9 @@ public class App {
      */
     void run() {
         for (Quiz quiz : quizzes) {
-            askQuiz(quiz);
+            var answer = askQuiz(quiz);
+            if (answer == CORRECT)
+                displaySuccess();
         }
     }
 
@@ -55,15 +58,16 @@ public class App {
      *
      * @param quiz the quiz to be asked
      */
-    void askQuiz(Quiz quiz) {
+    Answer askQuiz(Quiz quiz) {
         displayQuestion(quiz.getDescription());
         String answer = getUserAnswer();
 
         if (quiz.isCorrect(answer)) {
-            displaySuccess();
+            return CORRECT;
         } else {
             displayFailure();
         }
+        return null;
     }
 
     private void displayQuestion(String question) {
