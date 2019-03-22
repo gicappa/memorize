@@ -48,8 +48,7 @@ public class App {
      */
     void run() {
         for (Quiz quiz : quizzes) {
-            var answer = askQuiz(quiz);
-            display(answer.toString());
+            display(askQuiz(quiz).toString());
         }
     }
 
@@ -60,9 +59,8 @@ public class App {
      */
     Answer askQuiz(Quiz quiz) {
         display(quiz.getDescription());
-        String answer = readInput();
 
-        if (quiz.isCorrect(answer)) {
+        if (quiz.isCorrect(readInput())) {
             return CORRECT;
         } else {
             return WRONG;
