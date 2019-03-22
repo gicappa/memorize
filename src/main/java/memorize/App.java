@@ -49,7 +49,7 @@ public class App {
     void run() {
         for (Quiz quiz : quizzes) {
             var answer = askQuiz(quiz);
-            System.out.println(answer);
+            display(answer.toString());
         }
     }
 
@@ -59,7 +59,7 @@ public class App {
      * @param quiz the quiz to be asked
      */
     Answer askQuiz(Quiz quiz) {
-        displayQuestion(quiz.getDescription());
+        display(quiz.getDescription());
         String answer = getUserAnswer();
 
         if (quiz.isCorrect(answer)) {
@@ -69,7 +69,7 @@ public class App {
         }
     }
 
-    private void displayQuestion(String question) {
+    private void display(String question) {
         System.out.println(question);
     }
 
