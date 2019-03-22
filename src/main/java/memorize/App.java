@@ -60,7 +60,7 @@ public class App {
      */
     Answer askQuiz(Quiz quiz) {
         display(quiz.getDescription());
-        String answer = getUserAnswer();
+        String answer = readInput();
 
         if (quiz.isCorrect(answer)) {
             return CORRECT;
@@ -73,7 +73,7 @@ public class App {
         System.out.println(question);
     }
 
-    private String getUserAnswer() {
+    private String readInput() {
         System.out.print("> ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
