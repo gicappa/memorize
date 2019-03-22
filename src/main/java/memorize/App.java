@@ -60,11 +60,7 @@ public class App {
     Answer askQuiz(Quiz quiz) {
         display(quiz.getDescription());
 
-        if (quiz.isCorrect(readInput())) {
-            return CORRECT;
-        } else {
-            return WRONG;
-        }
+        return quiz.validate(readInput());
     }
 
     private void display(String question) {

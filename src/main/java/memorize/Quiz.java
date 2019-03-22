@@ -1,5 +1,8 @@
 package memorize;
 
+import static memorize.Answer.CORRECT;
+import static memorize.Answer.WRONG;
+
 /**
  * The abstraction of a quiz. It's composed by a question and
  * an answer. The quiz must be able to understand if a given
@@ -13,7 +16,7 @@ class Quiz {
      * To create a quiz is needed a question and an answer
      *
      * @param question the statement of the quiz to perform to the user
-     * @param answer the correct answer to test the qiz against
+     * @param answer   the correct answer to test the qiz against
      */
 
     Quiz(String question, String answer) {
@@ -33,10 +36,22 @@ class Quiz {
 
     /**
      * This method check if an external answer
+     *
      * @param userAnswer is the user answer
      * @return true if the answer is correct
      */
     boolean isCorrect(String userAnswer) {
         return answer.equalsIgnoreCase(userAnswer);
+    }
+
+    /**
+     * This method check if an external answer
+     *
+     * @param userAnswer is the user answer
+     * @return true if the answer is correct
+     */
+
+    Answer validate(String userAnswer) {
+        return answer.equalsIgnoreCase(userAnswer) ? CORRECT : WRONG;
     }
 }
