@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 import static memorize.Answer.CORRECT;
+import static memorize.Answer.WRONG;
 
 /**
  * Entry point for the whole application.
@@ -48,8 +49,7 @@ public class App {
     void run() {
         for (Quiz quiz : quizzes) {
             var answer = askQuiz(quiz);
-            if (answer == CORRECT)
-                displaySuccess();
+            System.out.println(answer);
         }
     }
 
@@ -65,9 +65,8 @@ public class App {
         if (quiz.isCorrect(answer)) {
             return CORRECT;
         } else {
-            displayFailure();
+            return WRONG;
         }
-        return null;
     }
 
     private void displayQuestion(String question) {
@@ -78,14 +77,6 @@ public class App {
         System.out.print("> ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
-    }
-
-    private void displayFailure() {
-        System.out.println("ERRORE");
-    }
-
-    private void displaySuccess() {
-        System.out.println("OK");
     }
 
 }
