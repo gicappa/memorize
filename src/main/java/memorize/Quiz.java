@@ -1,7 +1,7 @@
 package memorize;
 
-import static memorize.Answer.CORRECT;
-import static memorize.Answer.WRONG;
+import static memorize.Result.CORRECT;
+import static memorize.Result.WRONG;
 
 /**
  * The abstraction of a quiz. It's composed by a question and
@@ -40,18 +40,7 @@ class Quiz {
      * @param userAnswer is the user answer
      * @return true if the answer is correct
      */
-    boolean isCorrect(String userAnswer) {
-        return answer.equalsIgnoreCase(userAnswer);
-    }
-
-    /**
-     * This method check if an external answer
-     *
-     * @param userAnswer is the user answer
-     * @return true if the answer is correct
-     */
-
-    Answer validate(String userAnswer) {
+    Result validate(String userAnswer) {
         return answer.equalsIgnoreCase(userAnswer) ? CORRECT : WRONG;
     }
 }

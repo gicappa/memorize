@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
-import static memorize.Answer.CORRECT;
-import static memorize.Answer.WRONG;
 
 /**
  * Entry point for the whole application.
@@ -57,7 +55,7 @@ public class App {
      *
      * @param quiz the quiz to be asked
      */
-    Answer askQuiz(Quiz quiz) {
+    Result askQuiz(Quiz quiz) {
         display(quiz.getDescription());
 
         return quiz.validate(readInput());

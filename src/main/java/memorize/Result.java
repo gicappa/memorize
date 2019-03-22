@@ -1,11 +1,11 @@
 package memorize;
 
-enum Answer {
+enum Result {
     CORRECT("OK"), WRONG("ERRORE");
 
     private final String description;
 
-    Answer(String description) {
+    Result(String description) {
         this.description = description;
     }
 
