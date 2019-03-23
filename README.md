@@ -63,8 +63,36 @@ that will end up in a refactoring/ease of the test itself.
 Now that I have a test the application may be refactored for real. 
 The first question I make to myself is: should I use a functional style
 or an object oriented style? In the first case I should pass some 
-functions to accomplish to the different task of selecting an 
-puzzle to present and check for the answers.
+functions to accomplish to the different task of selecting a 
+quiz to present and check for the answers. In the second case some 
+objects to accomplish the task hiding the implementation details
+with encapsulation. I'll start with the OO style I'm more comfortable
+with. 
+In the refactoring I started extracting the Quizzes from the App class.
+Now the app class will obtail the quizzes from the constructor.
 
-    
- 
+## Continuing with the refactoring
+I continued the refactoring trying to proceed by baby steps. Next 
+step is to extract the method ``askQuiz`` in order to start splitting the responsibilities.
+Next step has been to overcome the "Primitive Obsession" of using a 
+boolean to express the result of a quiz: the ``askQuiz`` will now return
+a ``Result`` enum that may have a ``CORRECT`` or ``WRONG`` result.
+These refactoring allowed me also to create new tests because in the 
+process we started decoupling differenr parts of the application.
+
+## Splitting responsibilities
+We started from a connected architecture so all the responsibilities 
+are glued together in the same place. It's time to apply the Single
+Responsibility Principle (SRP) and start extracting the 
+responsibilities from the application. While extracting we'll move 
+also the test that we can move in a separate test case.
+The first responsibility to split is the configuration and start 
+of a quiz session of the App from the actual test session execution.
+We decided to extract the QuizSession object that contains the ``start()``
+method that accept a list of quizzes and that will executes all of them.
+We also moved all the methods related to the quiz execution to this new 
+class. 
+Now App just create quizzes and QuizSession and then run the session.
+The last step is to move the tests to a new QuizSessionTest class. 
+
+## Applying SRP to the QuizSession class
