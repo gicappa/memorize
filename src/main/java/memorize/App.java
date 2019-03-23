@@ -12,6 +12,7 @@ import static java.lang.System.exit;
 public class App {
 
     private final ArrayList<Quiz> quizzes;
+    private final QuizSession quizSession;
 
     /**
      * Main method where the application starts.
@@ -24,7 +25,7 @@ public class App {
 
             quizzes.add(new Quiz("Domanda?", "corretta"));
 
-            new App(quizzes).run();
+            new App(quizzes, new QuizSession()).run();
         } catch (Exception e) {
             System.err.println(e.getMessage());
             exit(1);
@@ -36,39 +37,16 @@ public class App {
      *
      * @param quizzes list of quizzes as a parameter
      */
-    App(ArrayList<Quiz> quizzes) {
+    App(ArrayList<Quiz> quizzes, QuizSession quizSession) {
         this.quizzes = quizzes;
+        this.quizSession = quizSession;
     }
-
 
     /**
      * starting all the things
      */
     void run() {
-        for (Quiz quiz : quizzes) {
-            display(askQuiz(quiz).toString());
-        }
-    }
-
-    /**
-     * Single quiz question
-     *
-     * @param quiz the quiz to be asked
-     */
-    Result askQuiz(Quiz quiz) {
-        display(quiz.getDescription());
-
-        return quiz.validate(readInput());
-    }
-
-    private void display(String question) {
-        System.out.println(question);
-    }
-
-    private String readInput() {
-        System.out.print("> ");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        quizSession.start(quizzes);
     }
 
 }
